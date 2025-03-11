@@ -2320,7 +2320,7 @@ Public Class Form1
 
     Private InstructionsFont As New Font("Segoe UI", 14)
 
-    Private InstructionsLocation As New Rectangle(0, 0, 500, 500)
+    Private InstructionsLocation As New Point(0, 0)
 
     Private F1NoticeLocation As New PointF(0, 0)
 
@@ -2329,17 +2329,24 @@ Public Class Form1
 
     Private KeyboardHintsText As New String("Show / Hide Keyboard Hints > F1" _
                                   & Environment.NewLine _
+                                  & "Rotate Turret CounterClockwise > Left Arrow" _
+                                  & Environment.NewLine _
+                                  & "Rotate Turret Clockwise > Right Arrow" _
+                                  & Environment.NewLine _
                                   & "Show / Hide Controller Hints > F2" _
                                   & Environment.NewLine _
-                                  & "Rotate Counterclockwise > A" _
+                                  & "Rotate Hull Counterclockwise > A" _
                                   & Environment.NewLine _
-                                  & "Rotate Clockwise > D" _
+                                  & "Rotate Hull Clockwise > D" _
                                   & Environment.NewLine _
                                   & "Forward > W" _
                                   & Environment.NewLine _
                                   & "Reverse > S" _
                                   & Environment.NewLine _
-                                  & "Stop > E")
+                                  & "Stop > E" _
+                                  & Environment.NewLine _
+                                  & "Fire > X" _
+                                  & Environment.NewLine)
 
 
     Private ControllerHintsText As New String("Show / Hide Keyboard Hints > F1" _
@@ -2991,6 +2998,16 @@ Public Class Form1
 
         Player.SetVolume("emergencystop", 1000)
 
+
+
+
+        FilePath = Path.Combine(Application.StartupPath, "gunshot.mp3")
+
+        Player.AddOverlapping("gunshot", FilePath)
+
+        Player.SetVolume("gunshot", 1000)
+
+
     End Sub
 
     Private Sub CreateSoundFiles()
@@ -3006,6 +3023,14 @@ Public Class Form1
         FilePath = Path.Combine(Application.StartupPath, "emergencystop.mp3")
 
         CreateFileFromResource(FilePath, My.Resources.Resource1.emergencystop)
+
+
+        FilePath = Path.Combine(Application.StartupPath, "gunshot.mp3")
+
+        CreateFileFromResource(FilePath, My.Resources.Resource1.gunshot003)
+
+
+
 
     End Sub
 
