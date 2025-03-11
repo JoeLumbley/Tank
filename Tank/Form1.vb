@@ -66,7 +66,7 @@ Public Structure Turret
         Me.Length = length
         Me.AngleInDegrees = angleInDegrees
         Me.TimeToNextFire = reloadTime
-        UnderlightPen = New Pen(Color.FromArgb(128, Color.Blue), 23)
+        UnderlightPen = New Pen(Color.FromArgb(128, Color.Blue), 14)
         UnderlightBrush = New SolidBrush(Color.FromArgb(128, Color.Blue))
         Me.Diameter = diameter
 
@@ -395,6 +395,9 @@ Public Structure ArrowVector
 
     Public Pen As Pen
 
+    Public OutlinePen As Pen
+
+
     Public ReversePen As Pen
 
     Public Center As PointF
@@ -431,6 +434,9 @@ Public Structure ArrowVector
 
     Public EndPoint As PointF
 
+    Public OutlineEndPoint As PointF
+
+
     Public ReverseEndPoint As PointF
 
     Public Sub New(pen As Pen,
@@ -448,6 +454,15 @@ Public Structure ArrowVector
         pen.StartCap = Drawing2D.LineCap.Round
 
         pen.EndCap = Drawing2D.LineCap.ArrowAnchor
+
+
+        OutlinePen = New Pen(Color.White, Me.Pen.Width + 4)
+
+        OutlinePen.StartCap = Drawing2D.LineCap.Round
+
+        OutlinePen.EndCap = Drawing2D.LineCap.ArrowAnchor
+
+
 
         ReversePen = New Pen(Color.White, 5)
 
@@ -507,6 +522,10 @@ Public Structure ArrowVector
 
         Pen.Width = Width
 
+        OutlinePen.Width = Width + 4
+
+
+
         ReversePen.Width = ReverseWidth
 
         AngleInRadians = DegreesToRadians(AngleInDegrees)
@@ -518,6 +537,13 @@ Public Structure ArrowVector
         ' Calculate the endpoint of the line using trigonometry
         EndPoint = New PointF(Center.X + Length * Cos(AngleInRadians),
                               Center.Y + Length * Sin(AngleInRadians))
+
+
+        ' Calculate the endpoint of the line using trigonometry
+        OutlineEndPoint = New PointF(Center.X + (Length + 4) * Cos(AngleInRadians),
+                                     Center.Y + (Length + 4) * Sin(AngleInRadians))
+
+
 
         ReverseLength = GetReverseLength(Velocity, MaxVelocity, MinLength, MaxLength)
 
@@ -551,9 +577,16 @@ Public Structure ArrowVector
         ' We are visualizing our negative vector as an arrow that points in the
         ' opposite direction.
 
+
+
+        ' Draw forward arrow outline (Vector →)
+        g.DrawLine(OutlinePen, Center, OutlineEndPoint)
+
         ' Draw forward arrow (Vector →)
         g.DrawLine(Pen, Center, EndPoint)
         ' We are visualizing our vector as an arrow.
+
+
 
         ' Vector →
         ' A vector is a mathematical object that has both a magnitude (or length)
@@ -770,6 +803,13 @@ Public Structure Body
 
         AngleInRadians = DegreesToRadians(angleInDegrees)
 
+
+
+        RotatedBody = RotatePoints(Body, center, AngleInRadians)
+
+        RotatedKeyboardHints = RotatePoints(KeyboardHints, center, AngleInRadians)
+
+
         ' Set velocity based on angle
         VelocityVector.X = Cos(AngleInRadians) * Me.Velocity
         VelocityVector.Y = Sin(AngleInRadians) * Me.Velocity
@@ -914,13 +954,23 @@ Public Structure Body
 
     End Sub
 
-    Public Sub Draw(g As Graphics)
+    Public Sub Draw(g As Graphics, clientsize As Size)
 
         g.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
 
         g?.FillEllipse(Brushes.LightGray, Center.X - 72, Center.Y - 72, 144, 144)
 
-        g?.FillPolygon(Brush, RotatedBody)
+
+        ' Define the gradient brush with a larger virtual space
+        Dim GradientRectangle As New RectangleF(Center.X - 275, Center.Y - 275, 500, 500) ' Width and height control the texture size
+        Dim DiagonalGradientBrush As New LinearGradientBrush(
+    GradientRectangle,      ' Define the virtual space for the gradient
+    Color.White,            ' Start with white
+    Color.Black,            ' End with black
+    LinearGradientMode.ForwardDiagonal ' Diagonal gradient
+)
+
+        g?.FillPolygon(DiagonalGradientBrush, RotatedBody)
 
         If ShowKeyboardHints Then
 
@@ -2523,7 +2573,7 @@ Public Class Form1
 
         OffScreen.Buffered.Graphics.DrawString(HintsText, InstructionsFont, Brushes.Black, InstructionsLocation)
 
-        Body.Draw(OffScreen.Buffered.Graphics)
+        Body.Draw(OffScreen.Buffered.Graphics, ClientSize)
 
         Arrow.Draw(OffScreen.Buffered.Graphics)
 
