@@ -151,12 +151,29 @@ Private KeyboardHintsText As New String("Show / Hide Keyboard Hints > F1"
                                       & "Fire > X"
                                       & Environment.NewLine)
 
+
 ```
+
 - **KeyboardHintsText**: This string provides detailed instructions for keyboard controls.
 
 ```vb
-Private ControllerHintsText As New String("Show / Hide Keyboard Hints > F1" & Environment.NewLine & "Show / Hide Controller Hints > F2" & Environment.NewLine & "Rotate Counterclockwise > Left" & Environment.NewLine & "Rotate Clockwise > Right" & Environment.NewLine & "Forward > A" & Environment.NewLine & "Reverse > Y" & Environment.NewLine & "Stop > B")
+
+Private ControllerHintsText As New String("Show / Hide Keyboard Hints > F1"
+                                       & Environment.NewLine
+                                       & "Show / Hide Controller Hints > F2"
+                                       & Environment.NewLine
+                                       & "Rotate Counterclockwise > Left"
+                                       & Environment.NewLine
+                                       & "Rotate Clockwise > Right"
+                                       & Environment.NewLine
+                                       & "Forward > A"
+                                       & Environment.NewLine
+                                       & "Reverse > Y"
+                                       & Environment.NewLine
+                                       & "Stop > B")
+
 ```
+
 - **ControllerHintsText**: Similar to the keyboard hints, this provides instructions for using a controller.
 
 ```vb
