@@ -2360,6 +2360,9 @@ Public Class Form1
 
     Private RightArrowDown As Boolean
 
+    Private SpaceDown As Boolean
+
+
     Private TimeToNextRotation As TimeSpan = TimeSpan.FromMilliseconds(1)
 
     Private LastRotationTime As DateTime = Now
@@ -2505,6 +2508,8 @@ Public Class Form1
                 LeftArrowDown = True
             Case Keys.Right
                 RightArrowDown = True
+            Case Keys.Space
+                SpaceDown = True
 
         End Select
 
@@ -2536,6 +2541,9 @@ Public Class Form1
                 LeftArrowDown = False
             Case Keys.Right
                 RightArrowDown = False
+            Case Keys.Space
+                SpaceDown = False
+
 
         End Select
 
@@ -2738,11 +2746,13 @@ Public Class Form1
 
 
 
-        If XDown Then
+        If XDown OrElse SpaceDown Then
 
             FireProjectile()
 
         End If
+
+
 
         If LeftArrowDown Then
 
