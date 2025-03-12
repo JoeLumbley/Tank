@@ -129,7 +129,28 @@ Private HiddenHints As New String("Show / Hide Keyboard Hints > F1" & Environmen
 - **HiddenHints**: This string contains hints for keyboard controls.
 
 ```vb
-Private KeyboardHintsText As New String("Show / Hide Keyboard Hints > F1" & Environment.NewLine & "Rotate Turret CounterClockwise > Left Arrow" & Environment.NewLine & "Rotate Turret Clockwise > Right Arrow" & Environment.NewLine & "Show / Hide Controller Hints > F2" & Environment.NewLine & "Rotate Hull Counterclockwise > A" & Environment.NewLine & "Rotate Hull Clockwise > D" & Environment.NewLine & "Forward > W" & Environment.NewLine & "Reverse > S" & Environment.NewLine & "Stop > E" & Environment.NewLine & "Fire > X" & Environment.NewLine)
+
+Private KeyboardHintsText As New String("Show / Hide Keyboard Hints > F1"
+                                      & Environment.NewLine
+                                      & "Rotate Turret CounterClockwise > Left Arrow"
+                                      & Environment.NewLine
+                                      & "Rotate Turret Clockwise > Right Arrow"
+                                      & Environment.NewLine
+                                      & "Show / Hide Controller Hints > F2"
+                                      & Environment.NewLine
+                                      & "Rotate Hull Counterclockwise > A"
+                                      & Environment.NewLine
+                                      & "Rotate Hull Clockwise > D"
+                                      & Environment.NewLine
+                                      & "Forward > W"
+                                      & Environment.NewLine
+                                      & "Reverse > S"
+                                      & Environment.NewLine
+                                      & "Stop > E"
+                                      & Environment.NewLine
+                                      & "Fire > X"
+                                      & Environment.NewLine)
+
 ```
 - **KeyboardHintsText**: This string provides detailed instructions for keyboard controls.
 
