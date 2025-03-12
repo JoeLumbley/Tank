@@ -1,6 +1,6 @@
 # Tank
 
-Welcome to the **Tank Project**! This exciting and interactive app brings the thrill of tank battles to your screen, combining strategic gameplay with dynamic graphics and responsive controls. Developed using Visual Basic, this project showcases a robust architecture that handles everything from turret mechanics to projectile management and audio integration.
+Welcome to the **Tank Project**! This exciting and interactive app brings the thrill of tank battles to your screen, combining strategic gameplay with dynamic graphics and responsive controls. This project showcases a robust architecture that handles everything from turret mechanics to projectile management and audio integration.
 
 ![001](https://github.com/user-attachments/assets/be612b80-8730-4cff-abc0-5a3dd3c59cd2)
 
