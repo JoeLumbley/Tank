@@ -2411,7 +2411,7 @@ Public Class Form1
                                   & Environment.NewLine _
                                   & "Stop > B" _
                                   & Environment.NewLine _
-                                  & "Fire > X" _
+                                  & "Fire > Right Trigger" _
                                   & Environment.NewLine)
 
     Private HintsText As String = KeyboardHintsText
