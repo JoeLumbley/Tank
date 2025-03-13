@@ -2909,8 +2909,6 @@ Public Class Form1
 
         End If
 
-
-
         If Controllers.A(0) OrElse Controllers.LeftStick(0) Then
 
             If Body.Velocity < Body.MaxVelocity Then
