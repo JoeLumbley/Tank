@@ -2909,6 +2909,8 @@ Public Class Form1
 
         End If
 
+
+
         If Controllers.A(0) OrElse Controllers.LeftStick(0) Then
 
             If Body.Velocity < Body.MaxVelocity Then
@@ -2972,6 +2974,24 @@ Public Class Form1
                 Player.PauseSound("emergencystop")
 
             End If
+
+        End If
+
+        If Controllers.X(0) Then
+
+            FireProjectile()
+
+        End If
+
+        If Controllers.RightThumbstickLeft(0) Then
+
+            RotateTurretCounterClockwise()
+
+        End If
+
+        If Controllers.RightThumbstickRight(0) Then
+
+            RotateTurretClockwise()
 
         End If
 
