@@ -1,6 +1,6 @@
 # Tank
 
-Welcome to the **Tank Project**! This exciting and interactive app brings the thrill of tank battles to your screen, combining strategic gameplay with dynamic graphics and responsive controls. This project showcases a robust architecture that handles everything from turret mechanics to projectile management and audio integration.
+This exciting and interactive app brings the thrill of tank battles to your screen, combining strategic gameplay with dynamic graphics and responsive controls. This project showcases a robust architecture that handles everything from turret mechanics to projectile management and audio integration.
 
 ![001](https://github.com/user-attachments/assets/be612b80-8730-4cff-abc0-5a3dd3c59cd2)
 
@@ -22,7 +22,7 @@ Join us on this journey to create an engaging tank battle experience!
 
 # Code Walkthrough
 
-Welcome to the detailed code walkthrough for the **Tank** project! This guide will help you understand each line of the code, breaking down its functionality in a way that's beginner-friendly. Let's dive in!
+
 
 ## Class Definition
 
