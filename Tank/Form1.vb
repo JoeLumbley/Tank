@@ -2322,8 +2322,6 @@ Public Class Form1
 
     Private Projectiles As New ProjectileManager(Brushes.Red, New Drawing.Size(10, 10), 200, 100, 9)
 
-
-
     Private Controllers As XboxControllers
 
     Private ClientCenter As Point = New Point(ClientSize.Width / 2, ClientSize.Height / 2)
@@ -2332,9 +2330,7 @@ Public Class Form1
 
     Dim Arrow As New ArrowVector(New Pen(Color.Black, 10), New PointF(640, 360), 0, 60, 70, 10, 15, 0, Body.MaxVelocity, 30)
 
-
     Private RelativeTurretAngle As Single
-
 
     Private ADown As Boolean
 
@@ -2362,14 +2358,9 @@ Public Class Form1
 
     Private SpaceDown As Boolean
 
-
     Private TimeToNextRotation As TimeSpan = TimeSpan.FromMilliseconds(1)
 
     Private LastRotationTime As DateTime = Now
-
-
-
-
 
     Private InstructionsFont As New Font("Segoe UI", 14)
 
@@ -2398,28 +2389,32 @@ Public Class Form1
                                   & Environment.NewLine _
                                   & "Stop > E" _
                                   & Environment.NewLine _
-                                  & "Fire > X" _
+                                  & "Fire > Space" _
                                   & Environment.NewLine)
 
 
     Private ControllerHintsText As New String("Show / Hide Keyboard Hints > F1" _
                                   & Environment.NewLine _
+                                  & "Rotate Turret CounterClockwise > Right Thumbstick Left" _
+                                  & Environment.NewLine _
+                                  & "Rotate Turret Clockwise > Right Thumbstick Right" _
+                                  & Environment.NewLine _
+                                  & "Rotate Hull Counterclockwise > Left Thumbstick Left" _
+                                  & Environment.NewLine _
+                                  & "Rotate Hull Clockwise > Left Thumbstick Right" _
+                                  & Environment.NewLine _
                                   & "Show / Hide Controller Hints > F2" _
-                                  & Environment.NewLine _
-                                  & "Rotate Counterclockwise > Left" _
-                                  & Environment.NewLine _
-                                  & "Rotate Clockwise > Right" _
                                   & Environment.NewLine _
                                   & "Forward > A" _
                                   & Environment.NewLine _
                                   & "Reverse > Y" _
                                   & Environment.NewLine _
-                                  & "Stop > B")
+                                  & "Stop > B" _
+                                  & Environment.NewLine _
+                                  & "Fire > X" _
+                                  & Environment.NewLine)
 
     Private HintsText As String = KeyboardHintsText
-
-
-
 
     Public Sub New()
         InitializeComponent()
@@ -2452,9 +2447,7 @@ Public Class Form1
 
         Body.Update(DeltaTime.ElapsedTime)
 
-
         Turret.AngleInDegrees = (Body.AngleInDegrees + RelativeTurretAngle + 360) Mod 360
-
 
         Arrow.Center = Body.Center
 
@@ -2543,7 +2536,6 @@ Public Class Form1
                 RightArrowDown = False
             Case Keys.Space
                 SpaceDown = False
-
 
         End Select
 
@@ -2742,17 +2734,11 @@ Public Class Form1
 
         End If
 
-
-
-
-
         If XDown OrElse SpaceDown Then
 
             FireProjectile()
 
         End If
-
-
 
         If LeftArrowDown Then
 
@@ -2766,35 +2752,7 @@ Public Class Form1
 
         End If
 
-
     End Sub
-
-
-    'Private Sub RotateTurretClockwise()
-
-    '    Dim ElapsedTime As TimeSpan = Now - LastRotationTime
-
-    '    If ElapsedTime > TimeToNextRotation Then
-
-    '        If Turret.AngleInDegrees < 360 Then
-
-    '            'Turret.AngleInDegrees += 1.5 ' Rotate clockwise
-    '            RelativeTurretAngle = Turret.AngleInDegrees + 1 - Body.AngleInDegrees
-
-    '        Else
-
-    '            'Turret.AngleInDegrees = 0
-    '            RelativeTurretAngle = 0 - Body.AngleInDegrees
-
-    '        End If
-
-    '        LastRotationTime = Now
-
-    '    End If
-
-    'End Sub
-
-
 
     Private Sub RotateTurretClockwise()
 
@@ -2813,36 +2771,6 @@ Public Class Form1
 
     End Sub
 
-
-
-
-
-    'Private Sub RotateTurretCounterClockwise()
-
-    '    Dim ElapsedTime As TimeSpan = Now - LastRotationTime
-
-    '    If ElapsedTime > TimeToNextRotation Then
-
-    '        If Turret.AngleInDegrees > 0 Then
-
-    '            'Turret.AngleInDegrees -= 1.5 ' Rotate counterclockwise
-    '            RelativeTurretAngle = Turret.AngleInDegrees - 1 - Body.AngleInDegrees
-
-    '        Else
-
-    '            RelativeTurretAngle = 359 - Body.AngleInDegrees
-
-    '            'Turret.AngleInDegrees = 360
-
-    '        End If
-
-    '        LastRotationTime = Now
-
-    '    End If
-
-    'End Sub
-
-
     Private Sub RotateTurretCounterClockwise()
 
         Dim TimeSinceLastRotation As TimeSpan = Now - LastRotationTime
@@ -2860,24 +2788,6 @@ Public Class Form1
 
     End Sub
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Private Sub FireProjectile()
 
         ' Is it time to shoot my shot?
@@ -2893,7 +2803,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
     Private Sub HandleControllerInput()
 
@@ -2975,7 +2884,7 @@ Public Class Form1
 
         End If
 
-        If Controllers.X(0) Then
+        If Controllers.X(0) OrElse Controllers.RightTrigger(0) Then
 
             FireProjectile()
 
