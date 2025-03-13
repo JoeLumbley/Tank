@@ -24,9 +24,6 @@ Join us on this journey to create an engaging tank battle experience!
 
 
 
-# Tank Game Code Walkthrough
-
-Welcome to the detailed code walkthrough of our **Tank Game**! In this session, we will explore the `Form1` class line by line, explaining each part of the code so that beginners can easily understand the logic and structure behind it. Let’s dive in!
 
 ## Class Declaration
 
