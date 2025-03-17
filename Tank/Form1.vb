@@ -2320,7 +2320,7 @@ Public Class Form1
 
     Private Turret As Turret
 
-    Private Projectiles As New ProjectileManager(Brushes.Red, New Drawing.Size(10, 10), 200, 100, 9)
+    Private Projectiles As New ProjectileManager(Brushes.Red, New Drawing.Size(10, 10), 300, 100, 9)
 
     Private Controllers As XboxControllers
 
@@ -2430,6 +2430,8 @@ Public Class Form1
         Body.TimeToNextRotation = TimeSpan.FromMilliseconds(25)
 
         Turret = New Turret(New Pen(Color.Black, 10), 50, Body.Center, 75, 0, TimeSpan.FromMilliseconds(100))
+
+        Projectiles.BarrelLength = Turret.Length
 
         RelativeTurretAngle = Turret.AngleInDegrees - Body.AngleInDegrees
 
