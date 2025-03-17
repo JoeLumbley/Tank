@@ -956,19 +956,26 @@ Public Structure Body
 
     Public Sub Draw(g As Graphics, clientsize As Size)
 
-        g.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
+        'g.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
 
         g?.FillEllipse(Brushes.LightGray, Center.X - 72, Center.Y - 72, 144, 144)
 
 
         ' Define the gradient brush with a larger virtual space
-        Dim GradientRectangle As New RectangleF(Center.X - 275, Center.Y - 275, 500, 500) ' Width and height control the texture size
-        Dim DiagonalGradientBrush As New LinearGradientBrush(
-    GradientRectangle,      ' Define the virtual space for the gradient
-    Color.White,            ' Start with white
-    Color.Black,            ' End with black
-    LinearGradientMode.ForwardDiagonal ' Diagonal gradient
-)
+        Dim GradientRectangle As New RectangleF(Center.X - 275, Center.Y - 275, 512, 512) ' Width and height control the texture size
+
+
+        ' Define the virtual space for the gradient
+        Dim DiagonalGradientBrush As New LinearGradientBrush(GradientRectangle,
+                                                       Color.White,
+                                                       Color.Black,
+                                          LinearGradientMode.ForwardDiagonal)
+
+        ' Draw blue underglow.
+        g?.DrawPolygon(New Pen(Color.FromArgb(128, Color.Blue), 4), RotatedBody)
+
+
+
 
         g?.FillPolygon(DiagonalGradientBrush, RotatedBody)
 
