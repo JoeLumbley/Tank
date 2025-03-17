@@ -721,7 +721,7 @@ Public Structure Body
 
     Dim KeyboardHints As PointF()
 
-    Dim RotatedKeyboardHints As PointF()
+    Dim RotatedHints As PointF()
 
     Dim Body As PointF()
 
@@ -793,7 +793,7 @@ Public Structure Body
             New PointF(-HalfWidth - 20, -HalfHeight + Me.Height / 2)
         }
 
-        RotatedKeyboardHints = New PointF(KeyboardHints.Length - 1) {}
+        RotatedHints = New PointF(KeyboardHints.Length - 1) {}
 
         If angleInDegrees >= 0 AndAlso angleInDegrees <= 360 Then
             Me.AngleInDegrees = angleInDegrees
@@ -807,7 +807,7 @@ Public Structure Body
 
         RotatedBody = RotatePoints(Body, center, AngleInRadians)
 
-        RotatedKeyboardHints = RotatePoints(KeyboardHints, center, AngleInRadians)
+        RotatedHints = RotatePoints(KeyboardHints, center, AngleInRadians)
 
 
         ' Set velocity based on angle
@@ -944,7 +944,7 @@ Public Structure Body
 
         RotatedBody = RotatePoints(Body, Center, AngleInRadians)
 
-        RotatedKeyboardHints = RotatePoints(KeyboardHints, Center, AngleInRadians)
+        RotatedHints = RotatePoints(KeyboardHints, Center, AngleInRadians)
 
         ' Set velocity based on angle
         VelocityVector.X = Cos(AngleInRadians) * Velocity
@@ -962,7 +962,7 @@ Public Structure Body
 
 
         ' Define the gradient brush with a larger virtual space
-        Dim GradientRectangle As New RectangleF(Center.X - 275, Center.Y - 275, 512, 512) ' Width and height control the texture size
+        Dim GradientRectangle As New RectangleF(Center.X - 300, Center.Y - 300, 512, 512) ' Width and height control the texture size
 
 
         ' Define the virtual space for the gradient
@@ -981,33 +981,33 @@ Public Structure Body
 
         If ShowKeyboardHints Then
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(0).X - 17, RotatedKeyboardHints(0).Y - 17, 34, 34)
-            g?.DrawString("A", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(0), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(0).X - 17, RotatedHints(0).Y - 17, 34, 34)
+            g?.DrawString("A", KeyboardHintsFont, Brushes.White, RotatedHints(0), AlineCenterMiddle)
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(1).X - 17, RotatedKeyboardHints(1).Y - 17, 34, 34)
-            g?.DrawString("D", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(1), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(1).X - 17, RotatedHints(1).Y - 17, 34, 34)
+            g?.DrawString("D", KeyboardHintsFont, Brushes.White, RotatedHints(1), AlineCenterMiddle)
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(2).X - 17, RotatedKeyboardHints(2).Y - 17, 34, 34)
-            g?.DrawString("W", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(2), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(2).X - 17, RotatedHints(2).Y - 17, 34, 34)
+            g?.DrawString("W", KeyboardHintsFont, Brushes.White, RotatedHints(2), AlineCenterMiddle)
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(3).X - 17, RotatedKeyboardHints(3).Y - 17, 34, 34)
-            g?.DrawString("S", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(3), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(3).X - 17, RotatedHints(3).Y - 17, 34, 34)
+            g?.DrawString("S", KeyboardHintsFont, Brushes.White, RotatedHints(3), AlineCenterMiddle)
 
         End If
 
         If ShowControllerHints Then
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(0).X - 17, RotatedKeyboardHints(0).Y - 17, 34, 34)
-            g?.DrawString("L", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(0), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(0).X - 17, RotatedHints(0).Y - 17, 34, 34)
+            g?.DrawString("L", KeyboardHintsFont, Brushes.White, RotatedHints(0), AlineCenterMiddle)
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(1).X - 17, RotatedKeyboardHints(1).Y - 17, 34, 34)
-            g?.DrawString("R", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(1), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(1).X - 17, RotatedHints(1).Y - 17, 34, 34)
+            g?.DrawString("R", KeyboardHintsFont, Brushes.White, RotatedHints(1), AlineCenterMiddle)
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(2).X - 17, RotatedKeyboardHints(2).Y - 17, 34, 34)
-            g?.DrawString("A", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(2), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(2).X - 17, RotatedHints(2).Y - 17, 34, 34)
+            g?.DrawString("A", KeyboardHintsFont, Brushes.White, RotatedHints(2), AlineCenterMiddle)
 
-            g?.FillEllipse(Brushes.Black, RotatedKeyboardHints(3).X - 17, RotatedKeyboardHints(3).Y - 17, 34, 34)
-            g?.DrawString("Y", KeyboardHintsFont, Brushes.White, RotatedKeyboardHints(3), AlineCenterMiddle)
+            g?.FillEllipse(Brushes.Black, RotatedHints(3).X - 17, RotatedHints(3).Y - 17, 34, 34)
+            g?.DrawString("Y", KeyboardHintsFont, Brushes.White, RotatedHints(3), AlineCenterMiddle)
 
         End If
 
