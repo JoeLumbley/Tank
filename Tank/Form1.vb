@@ -968,6 +968,14 @@ Public Structure Body
         ' Draw blue underglow.
         g?.DrawPolygon(UnderglowPen, RotatedBody)
 
+        FillBodyWithLinearGradient(g)
+
+        DrawHints(g)
+
+    End Sub
+
+    Private Sub FillBodyWithLinearGradient(g As Graphics)
+
         ' Define the gradient brush with a larger virtual space
         Dim GradientRectangle As New RectangleF(Center.X - 300, Center.Y - 300, 512, 512) ' Width and height control the texture size
 
@@ -980,12 +988,10 @@ Public Structure Body
 
         g?.FillPolygon(DiagonalGradientBrush, RotatedBody)
 
-        DrawHints(g)
-
     End Sub
 
     Private Sub DrawHints(g As Graphics)
-        ' DrawHints
+
         If ShowKeyboardHints Then
 
             g?.FillEllipse(Brushes.Black, RotatedHints(0).X - 17, RotatedHints(0).Y - 17, 34, 34)
@@ -1017,6 +1023,7 @@ Public Structure Body
             g?.DrawString("Y", KeyboardHintsFont, Brushes.White, RotatedHints(3), AlineCenterMiddle)
 
         End If
+
     End Sub
 
     Public Sub UpdateMovement(ByVal deltaTime As TimeSpan)
