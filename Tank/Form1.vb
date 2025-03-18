@@ -965,7 +965,7 @@ Public Structure Body
 
         g?.FillEllipse(Brushes.LightGray, Center.X - 72, Center.Y - 72, 144, 144)
 
-        ' Draw blue underglow.
+        ' Draw underglow.
         g?.DrawPolygon(UnderglowPen, RotatedBody)
 
         FillBodyWithLinearGradient(g)
