@@ -742,12 +742,19 @@ Public Structure Body
 
     Private LastRotationTime As DateTime
 
+    Private UnderglowPen As Pen
+
+
+
     Public Sub New(brush As Brush,
                    center As PointF,
                    width As Integer,
                    height As Integer,
                    angleInDegrees As Single, velocity As Double,
                    maxVelocity As Double, acceleration As Double)
+
+
+        UnderglowPen = New Pen(Color.FromArgb(200, Color.Blue), 4)
 
         AlineCenterMiddle = New StringFormat With {.Alignment = StringAlignment.Center,
                                                    .LineAlignment = StringAlignment.Center}
@@ -954,12 +961,12 @@ Public Structure Body
 
     End Sub
 
-    Public Sub Draw(g As Graphics, clientsize As Size)
-
-        'g.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
+    Public Sub Draw(g As Graphics)
 
         g?.FillEllipse(Brushes.LightGray, Center.X - 72, Center.Y - 72, 144, 144)
 
+        ' Draw blue underglow.
+        g?.DrawPolygon(UnderglowPen, RotatedBody)
 
         ' Define the gradient brush with a larger virtual space
         Dim GradientRectangle As New RectangleF(Center.X - 300, Center.Y - 300, 512, 512) ' Width and height control the texture size
@@ -971,14 +978,14 @@ Public Structure Body
                                                        Color.Black,
                                           LinearGradientMode.ForwardDiagonal)
 
-        ' Draw blue underglow.
-        g?.DrawPolygon(New Pen(Color.FromArgb(128, Color.Blue), 4), RotatedBody)
-
-
-
-
         g?.FillPolygon(DiagonalGradientBrush, RotatedBody)
 
+        DrawHints(g)
+
+    End Sub
+
+    Private Sub DrawHints(g As Graphics)
+        ' DrawHints
         If ShowKeyboardHints Then
 
             g?.FillEllipse(Brushes.Black, RotatedHints(0).X - 17, RotatedHints(0).Y - 17, 34, 34)
@@ -1010,8 +1017,6 @@ Public Structure Body
             g?.DrawString("Y", KeyboardHintsFont, Brushes.White, RotatedHints(3), AlineCenterMiddle)
 
         End If
-
-
     End Sub
 
     Public Sub UpdateMovement(ByVal deltaTime As TimeSpan)
@@ -2582,7 +2587,7 @@ Public Class Form1
 
         OffScreen.Buffered.Graphics.DrawString(HintsText, InstructionsFont, Brushes.Black, InstructionsLocation)
 
-        Body.Draw(OffScreen.Buffered.Graphics, ClientSize)
+        Body.Draw(OffScreen.Buffered.Graphics)
 
         Arrow.Draw(OffScreen.Buffered.Graphics)
 
