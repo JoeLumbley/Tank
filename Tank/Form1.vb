@@ -94,12 +94,12 @@ Public Structure Turret
 
     End Sub
 
-    Public Sub DrawEllipseWithRadialGradient(g As Graphics, Center As PointF, Diameter As Integer)
+    Public Sub DrawEllipseWithRadialGradient(g As Graphics, center As PointF, diameter As Integer)
 
         ' Create the path for the ellipse
         Dim path As New GraphicsPath()
 
-        Dim GradRect As New Rectangle(Center.X - Diameter / 2, Center.Y - Diameter / 2, Diameter, Diameter)
+        Dim GradRect As New Rectangle(center.X - diameter / 2, center.Y - diameter / 2, diameter, diameter)
 
         GradRect.Inflate(4, 4)
 
@@ -115,10 +115,10 @@ Public Structure Turret
         brush.SurroundColors = New Color() {Color.Black}
 
         ' Set the center point of the gradient to the top left quadrant
-        brush.CenterPoint = New PointF(Center.X - Diameter / 4, Center.Y - Diameter / 4)
+        brush.CenterPoint = New PointF(center.X - diameter / 4, center.Y - diameter / 4)
 
         ' Fill the ellipse with the radial gradient brush
-        g.FillEllipse(brush, New Rectangle(Center.X - Diameter / 2, Center.Y - Diameter / 2, Diameter, Diameter))
+        g.FillEllipse(brush, New Rectangle(center.X - diameter / 2, center.Y - diameter / 2, diameter, diameter))
 
     End Sub
 
