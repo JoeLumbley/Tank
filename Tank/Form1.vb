@@ -745,8 +745,6 @@ Public Structure Body
 
     Private UnderglowPen As Pen
 
-
-
     Public Sub New(brush As Brush,
                    center As PointF,
                    width As Integer,
@@ -811,12 +809,9 @@ Public Structure Body
 
         AngleInRadians = DegreesToRadians(angleInDegrees)
 
-
-
         RotatedBody = RotatePoints(Body, center, AngleInRadians)
 
         RotatedHints = RotatePoints(KeyboardHints, center, AngleInRadians)
-
 
         ' Set velocity based on angle
         VelocityVector.X = Cos(AngleInRadians) * Me.Velocity
