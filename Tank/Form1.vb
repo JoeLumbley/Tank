@@ -95,6 +95,7 @@ Public Structure Turret
     End Sub
 
     Public Sub DrawEllipseWithRadialGradient(g As Graphics, Center As PointF, Diameter As Integer)
+
         ' Create the path for the ellipse
         Dim path As New GraphicsPath()
 
